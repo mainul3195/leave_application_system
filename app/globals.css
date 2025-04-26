@@ -1,0 +1,165 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    background: white;
+    min-height: 100vh;
+  }
+  
+  /* Add smooth scrolling for the entire page */
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  /* Add default animation duration and transitions */
+  * {
+    @apply transition-all duration-200;
+  }
+}
+
+@layer components {
+  /* Enhanced glass effect for all glass components */
+  .glass {
+    @apply bg-gradient-to-br from-white/80 to-white/60 bg-opacity-30 backdrop-blur-md rounded-xl shadow-glass border border-white/30;
+    transition: all 0.3s ease;
+  }
+  
+  /* Enhanced glass card with better hover effects */
+  .glass-card {
+    @apply glass p-6 transition-all duration-300 hover:bg-opacity-40 hover:shadow-lg;
+    animation: cardAppear 0.5s ease backwards;
+  }
+  
+  /* Glass navbar with sticky behavior and subtle depth */
+  .glass-navbar {
+    @apply glass py-3 px-6 sticky top-0 z-50 border-b border-white/20;
+    box-shadow: 0 4px 10px -2px rgba(0, 0, 0, 0.05);
+  }
+  
+  /* Enhanced button styling */
+  .btn-primary {
+    @apply bg-forest hover:bg-forest-dark active:scale-95 text-white font-medium py-2 px-4 rounded-md transition-all duration-200 shadow-sm;
+  }
+  
+  .btn-secondary {
+    @apply bg-white/50 hover:bg-white/70 active:scale-95 text-forest-dark font-medium py-2 px-4 rounded-md transition-all duration-200 backdrop-blur-sm border border-white/30;
+  }
+  
+  /* Table styling enhancements */
+  .table-container {
+    @apply glass p-0 overflow-hidden;
+    animation: slideUp 0.5s ease backwards;
+  }
+  
+  .table-header {
+    @apply bg-gradient-to-r from-forest/10 to-forest/5 text-forest-dark font-semibold;
+  }
+  
+  .table-row-hover {
+    @apply hover:bg-forest/5 transition-colors duration-200;
+  }
+  
+  /* Status badges with pulsing animation for pending */
+  .status-badge {
+    @apply px-2 py-1 rounded-full text-xs font-medium;
+  }
+  
+  .status-badge-pending {
+    @apply bg-amber-100 text-amber-800;
+    animation: pulse 2s infinite;
+  }
+  
+  .status-badge-approved {
+    @apply bg-green-300 text-green-800;
+  }
+  
+  .status-badge-rejected {
+    @apply bg-red-100 text-red-800;
+  }
+  
+  /* Form control styling */
+  .form-input {
+    @apply w-full px-4 py-2.5 bg-white/50 border border-forest/10 rounded-lg focus:outline-none focus:ring-2 focus:ring-forest/30 transition-all;
+  }
+  
+  /* Animation for modals */
+  .modal-animation {
+    animation: modalAppear 0.3s ease forwards;
+  }
+  
+  /* Animation for notifications */
+  .notification-animation {
+    animation: slideInRight 0.4s ease forwards;
+  }
+  
+  /* Add a leaf accent decoration */
+  .leaf-accent {
+    @apply after:content-[''] after:absolute after:w-8 after:h-8 after:bg-leaf/20 after:rounded-full after:-z-10 after:blur-sm;
+  }
+}
+
+/* Keyframe animations */
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes cardAppear {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes modalAppear {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Add a background pattern */
+.bg-pattern {
+  background-color: #f8fafc;
+  background-image: 
+    radial-gradient(at 70% 20%, rgba(37, 99, 61, 0.03) 0px, transparent 50%),
+    radial-gradient(at 30% 70%, rgba(88, 182, 100, 0.03) 0px, transparent 50%),
+    radial-gradient(at 90% 80%, rgba(99, 178, 111, 0.03) 0px, transparent 50%);
+  background-attachment: fixed;
+} 
