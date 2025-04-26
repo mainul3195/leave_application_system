@@ -79,7 +79,8 @@ export async function generateAndStorePDF(application: IApplication): Promise<st
     // Prepare replacement data
     const startDate = new Date(application.startDate).toLocaleDateString();
     const endDate = new Date(application.endDate).toLocaleDateString();
-    const statusDate = new Date(); // Current date when status was changed
+    const statusDate = application.statusUpdateDate || new Date(); // Use status update date if available, or current date
+    const applicationDate = application.createdAt ? new Date(application.createdAt).toLocaleDateString() : new Date().toLocaleDateString();
     const statusType = application.status === 'approved' ? 'Approved' : 'Rejected';
 
     // Format days value with half-day type if applicable
@@ -164,6 +165,12 @@ export async function generateAndStorePDF(application: IApplication): Promise<st
             replaceAllText: {
               containsText: { text: '{{STATUS_DATE}}', matchCase: true },
               replaceText: statusDate.toLocaleDateString(),
+            },
+          },
+          {
+            replaceAllText: {
+              containsText: { text: '{{DATE}}', matchCase: true },
+              replaceText: applicationDate,
             },
           },
         ],
