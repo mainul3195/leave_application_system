@@ -6,10 +6,27 @@ import Application from '@/models/Application';
 
 export async function GET(req: NextRequest) {
   try {
+    // Ensure database connection is properly established
     await dbConnect();
     
-    // Fetch all applications
-    const applications = await Application.find().sort({ createdAt: -1 });
+    // Add a small delay to ensure connection is fully ready (especially for Vercel)
+    await new Promise(resolve => setTimeout(resolve, 500));
+    
+    // Fetch all applications with explicit projection and lean query for performance
+    const applications = await Application.find({})
+      .sort({ createdAt: -1 })
+      .lean()
+      .exec();
+    
+    // Log the number of applications found (helps with debugging)
+    console.log(`Found ${applications.length} applications for PDF generation`);
+    
+    if (!applications || applications.length === 0) {
+      return NextResponse.json(
+        { message: 'No applications found to generate PDF' },
+        { status: 200 }
+      );
+    }
     
     // Create a new PDF document (A4 format in landscape mode for more space)
     const doc = new jsPDF({ orientation: 'landscape' });
@@ -147,7 +164,7 @@ export async function GET(req: NextRequest) {
   } catch (error) {
     console.error('Error generating PDF:', error);
     return NextResponse.json(
-      { error: 'Failed to generate PDF report' },
+      { error: 'Failed to generate PDF report', details: error instanceof Error ? error.message : String(error) },
       { status: 500 }
     );
   }

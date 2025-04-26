@@ -385,12 +385,20 @@ export default function AdminPage() {
       setDownloadingPdf(true);
       showNotification('Download started', 'Generating PDF, please wait...', 'info');
       
+      // Check if applications are loaded before proceeding
+      if (!applications || applications.length === 0) {
+        showNotification('No Data', 'There are no applications to download.', 'info');
+        setDownloadingPdf(false);
+        return;
+      }
+      
       const response = await fetch('/api/pdf/download', {
         method: 'GET',
       });
       
       if (!response.ok) {
-        throw new Error('Failed to generate PDF');
+        const errorData = await response.json().catch(() => ({}));
+        throw new Error(errorData.error || errorData.details || 'Failed to generate PDF');
       }
       
       // Create a blob from the PDF stream
@@ -415,7 +423,11 @@ export default function AdminPage() {
       showNotification('Success', 'Applications report downloaded successfully', 'success');
     } catch (error) {
       console.error('Error downloading PDF:', error);
-      showNotification('Error', 'Failed to download applications report', 'error');
+      showNotification(
+        'Error', 
+        `Failed to download applications report: ${error instanceof Error ? error.message : 'Unknown error'}`,
+        'error'
+      );
     } finally {
       setDownloadingPdf(false);
     }
