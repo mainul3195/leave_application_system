@@ -392,17 +392,48 @@ export default function AdminPage() {
         return;
       }
       
+      // Refresh applications list before download to ensure we have the latest data
+      try {
+        const freshResponse = await fetch('/api/applications');
+        if (freshResponse.ok) {
+          const freshData = await freshResponse.json();
+          if (freshData && Array.isArray(freshData)) {
+            // Only update if we got valid data
+            if (freshData.length > 0) {
+              // If locally we have less applications than the fresh data, update the state
+              if (applications.length < freshData.length) {
+                setApplications(freshData);
+                console.log(`Updated applications count from ${applications.length} to ${freshData.length}`);
+              }
+            }
+          }
+        }
+      } catch (refreshError) {
+        console.error('Failed to refresh applications before download:', refreshError);
+        // Continue with download even if refresh fails
+      }
+      
       const response = await fetch('/api/pdf/download', {
         method: 'GET',
+        // Add cache-busting parameter
+        headers: {
+          'Cache-Control': 'no-cache',
+          'Pragma': 'no-cache'
+        }
       });
       
       if (!response.ok) {
         const errorData = await response.json().catch(() => ({}));
+        console.error('PDF download API error:', errorData);
         throw new Error(errorData.error || errorData.details || 'Failed to generate PDF');
       }
       
       // Create a blob from the PDF stream
       const blob = await response.blob();
+      
+      if (!blob || blob.size === 0) {
+        throw new Error('Downloaded PDF is empty');
+      }
       
       // Create a link element to trigger the download
       const downloadUrl = window.URL.createObjectURL(blob);
@@ -420,7 +451,7 @@ export default function AdminPage() {
         window.URL.revokeObjectURL(downloadUrl);
       }, 100);
       
-      showNotification('Success', 'Applications report downloaded successfully', 'success');
+      showNotification('Success', `Applications report with ${applications.length} records downloaded successfully`, 'success');
     } catch (error) {
       console.error('Error downloading PDF:', error);
       showNotification(

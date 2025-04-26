@@ -82,6 +82,13 @@ export async function generateAndStorePDF(application: IApplication): Promise<st
     const statusDate = new Date(); // Current date when status was changed
     const statusType = application.status === 'approved' ? 'Approved' : 'Rejected';
 
+    // Format days value with half-day type if applicable
+    let daysDisplay = String(application.days);
+    if (application.days === 0.5 && application.halfDayType) {
+      const halfDayPeriod = application.halfDayType === 'first' ? 'Morning' : 'Afternoon';
+      daysDisplay = `${application.days} (${halfDayPeriod})`;
+    }
+
     // Replace placeholders in the document
     await docs.documents.batchUpdate({
       documentId,
@@ -132,7 +139,7 @@ export async function generateAndStorePDF(application: IApplication): Promise<st
           {
             replaceAllText: {
               containsText: { text: '{{DAYS}}', matchCase: true },
-              replaceText: String(application.days),
+              replaceText: daysDisplay,
             },
           },
           {
