@@ -1,22 +1,57 @@
 # Leave Application Management System
 
-A simple web application built with Next.js and MongoDB to manage leave applications in an organization.
+A comprehensive web application built for Brikkhobondhon to manage employee leave applications with mobile-responsive design and automated document generation.
 
 ## Features
 
-- View all leave applications on the homepage
-- Submit new leave applications via a form
-- Admin page to approve or reject applications
-- Track application status (pending, approved, rejected)
-- Email notifications for new applications and status updates
+- **Employee Features**:
+  - View and track personal leave applications
+  - Submit new leave applications through an intuitive form
+  - View application status (pending, approved, rejected)
+  - Access approval/rejection documents
+  
+- **Admin Features**:
+  - Secure admin dashboard with authentication
+  - Approve or reject leave applications
+  - Add comments when approving/rejecting applications
+  - Reset application status if needed
+  - View detailed information including reasons for leave
+  - Download all applications as a PDF report
+  - Regenerate documents for approved/rejected applications
+  - Change admin password
+
+- **Notifications**:
+  - Email notifications for new applications
+  - Status update notifications with document attachments
+  
+- **Document Generation**:
+  - Automatic PDF generation for approved/rejected applications
+  - Google Drive integration for document storage
+  - Branded documents with application details
 
 ## Tech Stack
 
-- Next.js 14 (App Router)
-- MongoDB with Mongoose
-- TypeScript
-- Tailwind CSS
-- Nodemailer for email notifications
+- **Frontend**:
+  - Next.js 14 (App Router)
+  - React
+  - TypeScript
+  - Tailwind CSS
+  - Mobile-responsive design
+
+- **Backend**:
+  - Next.js API Routes
+  - MongoDB with Mongoose
+  - Nodemailer for email notifications
+  - Google Drive API for document storage
+
+## Mobile Responsiveness
+
+The application is fully responsive and works seamlessly on:
+- Desktop computers
+- Tablets
+- Mobile phones
+
+All features, including the admin dashboard and application forms, are optimized for various screen sizes.
 
 ## Getting Started
 
@@ -40,7 +75,12 @@ A simple web application built with Next.js and MongoDB to manage leave applicat
    
    # Comma-separated list of admin email addresses to receive notifications
    ADMIN_EMAILS=admin1@example.com,admin2@example.com
+   
+   # Admin credentials (initial setup)
+   ADMIN_USERNAME=admin
+   ADMIN_PASSWORD=secure_password
    ```
+
 4. Run the development server:
    ```bash
    npm run dev
@@ -50,31 +90,31 @@ A simple web application built with Next.js and MongoDB to manage leave applicat
 ## Project Structure
 
 - `/app` - Next.js app router pages and API routes
+  - `/app/page.tsx` - Homepage showing all applications for the user
+  - `/app/apply/page.tsx` - Application form for new leave requests
+  - `/app/admin/page.tsx` - Admin dashboard for managing applications
+  - `/app/api` - API endpoints for data operations
+  
 - `/models` - MongoDB schema definitions
-- `/lib` - Database connection utilities and email functions
-- `.env.local` - Environment variables (not tracked in git)
+  - `/models/Application.ts` - Schema for leave applications
+  
+- `/lib` - Utility functions and services
+  - `/lib/db.ts` - Database connection utilities
+  - `/lib/email.ts` - Email sending functions
+  - `/lib/google.ts` - Google Drive integration for document generation
 
-## How to Use
+## Deployment
 
-1. **Homepage**: View all leave applications
-2. **Apply page**: Fill out the form to submit a new leave application
-3. **Admin page**: View all applications, approve or reject applications
+The application can be deployed to various platforms:
 
-## Email Notifications
+- **Vercel** (Recommended for Next.js apps):
+  1. Connect your GitHub repository to Vercel
+  2. Configure environment variables in the Vercel dashboard
+  3. Deploy with a single click
 
-The system sends email notifications in the following scenarios:
-
-1. When a new leave application is submitted:
-   - All admin email addresses specified in ADMIN_EMAILS receive a notification
-
-2. When an application status is updated (approved/rejected):
-   - The employee who submitted the application receives a notification
-
-## Email Configuration Tips
-
-- For Gmail, you'll need to use an "App Password" rather than your regular password
-- For testing, you can use services like [Mailtrap](https://mailtrap.io/) or [Ethereal Email](https://ethereal.email/)
-- Make sure your SMTP server allows sending emails from your application
+- **Traditional Hosting**:
+  1. Build the application: `npm run build`
+  2. Start the server: `npm start`
 
 ## Google Drive Integration
 
@@ -106,6 +146,8 @@ The application uses the following environment variables:
 - `EMAIL_PASSWORD`: SMTP password or app password
 - `EMAIL_FROM`: Sender email address
 - `ADMIN_EMAILS`: Comma-separated list of admin emails
+- `ADMIN_USERNAME`: Initial admin username (for first setup)
+- `ADMIN_PASSWORD`: Initial admin password (for first setup)
 
 If using OAuth 2.0 for Google Drive:
 - `GOOGLE_CLIENT_ID`: OAuth 2.0 client ID for Google API
@@ -118,4 +160,14 @@ If using a Service Account for Google Drive (recommended):
 
 Common for both approaches:
 - `GOOGLE_TEMPLATE_DOC_ID`: ID of the Google Docs template
-- `GOOGLE_DRIVE_FOLDER_ID`: ID of the Google Drive folder to store PDFs 
+- `GOOGLE_DRIVE_FOLDER_ID`: ID of the Google Drive folder to store PDFs
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## Acknowledgments
+
+- Brikkhobondhon for the opportunity to develop this application
+- The Next.js team for their excellent framework
+- Contributors to the various libraries used in this project 

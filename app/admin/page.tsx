@@ -494,50 +494,50 @@ export default function AdminPage() {
       {notification.show && (
         <div className="fixed inset-0 flex items-center justify-center z-50">
           <div className="fixed inset-0 bg-black/30 backdrop-blur-sm" onClick={() => setNotification(prev => ({ ...prev, show: false }))}></div>
-          <div className={`bg-white rounded-xl p-6 shadow-xl max-w-md w-full mx-4 z-10 border-l-4 modal-animation ${
+          <div className={`bg-white rounded-xl p-4 md:p-6 shadow-xl max-w-md w-full mx-4 z-10 border-l-4 modal-animation ${
             notification.type === 'success' ? 'border-green-500' :
             notification.type === 'error' ? 'border-red-500' : 'border-blue-500'
           }`}>
-            <div className="flex items-start mb-4">
-              <div className={`w-10 h-10 mr-4 rounded-full flex items-center justify-center flex-shrink-0 ${
+            <div className="flex items-start mb-3 md:mb-4">
+              <div className={`w-8 h-8 md:w-10 md:h-10 mr-3 md:mr-4 rounded-full flex items-center justify-center flex-shrink-0 ${
                 notification.type === 'success' ? 'bg-green-100 text-green-500' :
                 notification.type === 'error' ? 'bg-red-100 text-red-500' : 'bg-blue-100 text-blue-500'
               }`}>
                 {notification.type === 'success' ? (
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 md:h-6 md:w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                   </svg>
                 ) : notification.type === 'error' ? (
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 md:h-6 md:w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                   </svg>
                 ) : (
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 md:h-6 md:w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
                 )}
               </div>
               <div className="flex-1">
-                <h3 className={`text-lg font-semibold ${
+                <h3 className={`text-base md:text-lg font-semibold ${
                   notification.type === 'success' ? 'text-green-800' :
                   notification.type === 'error' ? 'text-red-800' : 'text-blue-800'
                 }`}>
                   {notification.title}
                 </h3>
-                <p className="mt-1 text-gray-600">{notification.message}</p>
+                <p className="mt-1 text-xs md:text-sm text-gray-600">{notification.message}</p>
               </div>
               <button 
-                className="text-gray-400 hover:text-gray-600 ml-4"
+                className="text-gray-400 hover:text-gray-600 ml-2 md:ml-4"
                 onClick={() => setNotification(prev => ({ ...prev, show: false }))}
               >
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 md:h-5 md:w-5" viewBox="0 0 20 20" fill="currentColor">
                   <path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd" />
                 </svg>
               </button>
             </div>
-            <div className="flex justify-end mt-4">
+            <div className="flex justify-end mt-2 md:mt-4">
               <button 
-                className={`px-4 py-2 rounded font-medium text-white ${
+                className={`px-3 py-1.5 md:px-4 md:py-2 rounded text-xs md:text-sm font-medium text-white ${
                   notification.type === 'success' ? 'bg-green-500 hover:bg-green-600' :
                   notification.type === 'error' ? 'bg-red-500 hover:bg-red-600' : 'bg-blue-500 hover:bg-blue-600'
                 }`}
@@ -551,18 +551,18 @@ export default function AdminPage() {
       )}
 
       <div className="glass-card">
-      <div className="flex justify-between items-center">
+      <div className="flex flex-col md:flex-row md:justify-between md:items-center gap-4">
           <div className="flex items-center">
             <div>
-              <h1 className="text-2xl font-bold text-forest-dark">Admin Dashboard</h1>
-              <p className="text-forest opacity-80">Manage leave applications for Brikkhobondhon</p>
+              <h1 className="text-xl md:text-2xl font-bold text-forest-dark">Admin Dashboard</h1>
+              <p className="text-sm md:text-base text-forest opacity-80">Manage leave applications for Brikkhobondhon</p>
             </div>
           </div>
-          <div className="flex items-center space-x-4">
+          <div className="flex flex-wrap items-center gap-2 md:gap-4">
             <button
               onClick={downloadApplicationsAsPDF}
               disabled={downloadingPdf || loading}
-              className={`bg-forest text-white hover:bg-forest-dark font-medium py-2 px-4 rounded-lg transition-colors flex items-center ${
+              className={`bg-forest text-white hover:bg-forest-dark font-medium py-1 px-2 md:py-1.5 md:px-3 rounded-lg transition-colors flex items-center text-xs md:text-sm ${
                 (downloadingPdf || loading) ? 'opacity-50 cursor-not-allowed' : ''
               }`}
             >
@@ -583,41 +583,35 @@ export default function AdminPage() {
                 </>
               )}
             </button>
-            <div className="flex items-center text-forest-dark bg-forest/5 py-2 px-3 rounded-lg">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5 mr-2 text-forest">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
-              </svg>
-              <span className="font-medium">{username}</span>
-            </div>
-          <button
-            onClick={() => setShowPasswordForm(!showPasswordForm)}
-              className="bg-white text-forest-dark border border-forest/20 hover:bg-forest/5 font-medium py-2 px-4 rounded-lg transition-colors flex items-center"
-          >
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4 mr-2">
+            <button
+              onClick={() => setShowPasswordForm(!showPasswordForm)}
+              className="bg-white text-forest-dark border border-forest/20 hover:bg-forest/5 font-medium py-1 px-2 md:py-1.5 md:px-3 rounded-lg transition-colors flex items-center text-xs md:text-sm"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-3 h-3 md:w-4 md:h-4 mr-1 md:mr-2">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 5.25a3 3 0 013 3m3 0a6 6 0 01-7.029 5.912c-.563-.097-1.159.026-1.563.43L10.5 17.25H8.25v2.25H6v2.25H2.25v-2.818c0-.597.237-1.17.659-1.591l6.499-6.499c.404-.404.527-1 .43-1.563A6 6 0 1121.75 8.25z" />
               </svg>
               Change Password
-          </button>
-          <button
-            onClick={logout}
-              className="bg-red-600 hover:bg-red-700 text-white font-medium py-2 px-4 rounded-lg transition-colors flex items-center"
-          >
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4 mr-2">
+            </button>
+            <button
+              onClick={logout}
+              className="bg-red-600 hover:bg-red-700 text-white font-medium py-1 px-2 md:py-1.5 md:px-3 rounded-lg transition-colors flex items-center text-xs md:text-sm"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-3 h-3 md:w-4 md:h-4 mr-1 md:mr-2">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l-3 3m0 0l3 3m-3-3h12.75" />
               </svg>
-            Logout
-          </button>
+              Logout
+            </button>
           </div>
         </div>
       </div>
       
       {showPasswordForm && (
         <div className="glass-card">
-          <h2 className="text-xl font-semibold mb-4 text-forest-dark">Change Password</h2>
+          <h2 className="text-lg md:text-xl font-semibold mb-3 md:mb-4 text-forest-dark">Change Password</h2>
           
           {authError && (
-            <div className="bg-red-50/80 border border-red-100 text-red-800 px-4 py-3 rounded-lg mb-4 flex items-center">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5 text-red-500 mr-2">
+            <div className="bg-red-50/80 border border-red-100 text-red-800 px-3 py-2 md:px-4 md:py-3 rounded-lg mb-3 md:mb-4 flex items-center text-xs md:text-sm">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4 md:w-5 md:h-5 text-red-500 mr-1 md:mr-2">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z" />
               </svg>
               <span>{authError}</span>
@@ -625,55 +619,55 @@ export default function AdminPage() {
           )}
           
           {passwordChangeSuccess && (
-            <div className="bg-green-50/80 border border-green-100 text-green-800 px-4 py-3 rounded-lg mb-4 flex items-center">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5 text-green-500 mr-2">
+            <div className="bg-green-50/80 border border-green-100 text-green-800 px-3 py-2 md:px-4 md:py-3 rounded-lg mb-3 md:mb-4 flex items-center text-xs md:text-sm">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4 md:w-5 md:h-5 text-green-500 mr-1 md:mr-2">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
               <span>{passwordChangeSuccess}</span>
             </div>
           )}
           
-          <form onSubmit={handlePasswordChange} className="space-y-4">
+          <form onSubmit={handlePasswordChange} className="space-y-3 md:space-y-4">
             <div>
-              <label className="block mb-2 text-sm font-medium text-forest-dark">
+              <label className="block mb-1 md:mb-2 text-xs md:text-sm font-medium text-forest-dark">
                 Current Password
               </label>
               <input
                 type="password"
                 value={passwordForm.oldPassword}
                 onChange={(e) => setPasswordForm({...passwordForm, oldPassword: e.target.value})}
-                className="w-full px-4 py-2.5 bg-white/50 border border-forest/10 rounded-lg focus:outline-none focus:ring-2 focus:ring-forest/30 transition"
+                className="w-full px-3 py-2 md:px-4 md:py-2.5 bg-white/50 border border-forest/10 rounded-lg focus:outline-none focus:ring-2 focus:ring-forest/30 transition text-sm"
                 required
               />
             </div>
             
             <div>
-              <label className="block mb-2 text-sm font-medium text-forest-dark">
+              <label className="block mb-1 md:mb-2 text-xs md:text-sm font-medium text-forest-dark">
                 New Password
               </label>
               <input
                 type="password"
                 value={passwordForm.newPassword}
                 onChange={(e) => setPasswordForm({...passwordForm, newPassword: e.target.value})}
-                className="w-full px-4 py-2.5 bg-white/50 border border-forest/10 rounded-lg focus:outline-none focus:ring-2 focus:ring-forest/30 transition"
+                className="w-full px-3 py-2 md:px-4 md:py-2.5 bg-white/50 border border-forest/10 rounded-lg focus:outline-none focus:ring-2 focus:ring-forest/30 transition text-sm"
                 required
               />
             </div>
             
             <div>
-              <label className="block mb-2 text-sm font-medium text-forest-dark">
+              <label className="block mb-1 md:mb-2 text-xs md:text-sm font-medium text-forest-dark">
                 Confirm New Password
               </label>
               <input
                 type="password"
                 value={passwordForm.confirmPassword}
                 onChange={(e) => setPasswordForm({...passwordForm, confirmPassword: e.target.value})}
-                className="w-full px-4 py-2.5 bg-white/50 border border-forest/10 rounded-lg focus:outline-none focus:ring-2 focus:ring-forest/30 transition"
+                className="w-full px-3 py-2 md:px-4 md:py-2.5 bg-white/50 border border-forest/10 rounded-lg focus:outline-none focus:ring-2 focus:ring-forest/30 transition text-sm"
                 required
               />
             </div>
             
-            <div className="flex justify-end space-x-3 pt-2">
+            <div className="flex justify-end space-x-2 md:space-x-3 pt-1 md:pt-2">
               <button
                 type="button"
                 onClick={() => {
@@ -686,7 +680,7 @@ export default function AdminPage() {
                   setAuthError('');
                   setPasswordChangeSuccess('');
                 }}
-                className="btn-secondary"
+                className="btn-secondary text-xs md:text-sm py-1.5 px-2 md:py-2 md:px-3"
               >
                 Cancel
               </button>
@@ -694,11 +688,11 @@ export default function AdminPage() {
               <button
                 type="submit"
                 disabled={passwordChangeLoading}
-                className="btn-primary flex items-center"
+                className="btn-primary flex items-center text-xs md:text-sm py-1.5 px-2 md:py-2 md:px-3"
               >
                 {passwordChangeLoading ? (
                   <>
-                    <svg className="animate-spin -ml-1 mr-2 h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <svg className="animate-spin -ml-1 mr-2 h-3 w-3 md:h-4 md:w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                       <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                       <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                     </svg>
@@ -713,182 +707,213 @@ export default function AdminPage() {
       
       {/* Applications List */}
       {loading ? (
-        <div className="glass-card flex justify-center items-center py-16">
+        <div className="glass-card flex justify-center items-center py-8 md:py-16">
           <div className="animate-bounce flex items-center space-x-2">
-            <svg className="animate-spin w-6 h-6 text-forest" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+            <svg className="animate-spin w-4 h-4 md:w-6 md:h-6 text-forest" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
               <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
               <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
             </svg>
-            <span className="text-forest-dark text-lg">Loading applications...</span>
+            <span className="text-forest-dark text-sm md:text-lg">Loading applications...</span>
           </div>
         </div>
       ) : applications.length === 0 ? (
-        <div className="glass-card text-center py-16">
-          <div className="w-16 h-16 bg-forest/10 rounded-full mx-auto flex items-center justify-center mb-4">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-8 h-8 text-forest-dark">
+        <div className="glass-card text-center py-8 md:py-16">
+          <div className="w-12 h-12 md:w-16 md:h-16 bg-forest/10 rounded-full mx-auto flex items-center justify-center mb-3 md:mb-4">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 md:w-8 md:h-8 text-forest-dark">
               <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
             </svg>
           </div>
-          <p className="text-xl font-medium text-forest-dark">No applications found</p>
-          <p className="text-forest mt-2">There are no leave applications to review at this time.</p>
+          <p className="text-lg md:text-xl font-medium text-forest-dark">No applications found</p>
+          <p className="text-sm md:text-base text-forest mt-1 md:mt-2">There are no leave applications to review at this time.</p>
         </div>
       ) : (
-        <div className="table-container">
-        <div className="overflow-x-auto">
-            <table className="min-w-full">
-            <thead>
-                <tr className="table-header">
-                  <th className="py-3 px-4 text-left border-b border-forest/10">Name</th>
-                  <th className="py-3 px-4 text-left border-b border-forest/10">Department</th>
-                  <th className="py-3 px-4 text-left border-b border-forest/10">Dates</th>
-                  <th className="py-3 px-4 text-left border-b border-forest/10">Days</th>
-                  <th className="py-3 px-4 text-left border-b border-forest/10">Status</th>
-                  <th className="py-3 px-4 text-left border-b border-forest/10">Applied On</th>
-                  <th className="py-3 px-4 text-left border-b border-forest/10">Reason</th>
-                  <th className="py-3 px-4 text-left border-b border-forest/10">Document</th>
-                  <th className="py-3 px-4 text-left border-b border-forest/10">Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              {applications.map((app) => (
-                  <tr key={app._id} className="table-row-hover">
-                    <td className="py-3 px-4 border-b border-forest/5">
-                      <div className="font-medium text-gray-900">{app.name}</div>
-                      <div className="text-sm text-forest/70">{app.email}</div>
-                      <div className="text-sm text-forest/70">{app.phoneNumber}</div>
-                    </td>
-                    <td className="py-3 px-4 border-b border-forest/5">
-                      <div>{app.department}</div>
-                      <div className="text-sm text-forest/70">{app.designation}</div>
-                  </td>
-                    <td className="py-3 px-4 border-b border-forest/5">
-                      <div>{new Date(app.startDate).toLocaleDateString()}</div>
-                      {app.startDate !== app.endDate && (
-                        <div className="text-sm text-forest/70">to {new Date(app.endDate).toLocaleDateString()}</div>
-                      )}
-                  </td>
-                    <td className="py-3 px-4 border-b border-forest/5">
-                    {app.days || '-'}
-                    {app.days === 0.5 && app.halfDayType && (
-                        <span className="ml-1 text-xs text-forest/70">
-                        ({app.halfDayType === 'first' ? 'Morning' : 'Afternoon'})
-                      </span>
-                    )}
-                  </td>
-                    <td className="py-3 px-4 border-b border-forest/5">
-                      <span className={`status-badge ${
-                        app.status === 'approved' ? 'status-badge-approved' : 
-                        app.status === 'rejected' ? 'status-badge-rejected' : 'status-badge-pending'
-                      }`}>
-                        {app.status.charAt(0).toUpperCase() + app.status.slice(1)}
-                    </span>
-                      
-                      {/* Show processing status if this application is being updated */}
-                      {updateStatus.id === app._id?.toString() && updateStatus.processing && (
-                        <div className="mt-1 text-xs text-forest-dark flex items-center">
-                          <svg className="animate-spin w-3 h-3 mr-1 text-forest" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                          </svg>
-                          {updateStatus.message}
-                        </div>
-                    )}
-                  </td>
-                    <td className="py-3 px-4 border-b border-forest/5">
-                      {app.createdAt ? (
-                        <div>
-                          <div>{new Date(app.createdAt).toLocaleDateString()}</div>
-                          <div className="text-sm text-forest/70">{new Date(app.createdAt).toLocaleTimeString()}</div>
-                      </div>
-                      ) : '—'}
-                    </td>
-                    <td className="py-3 px-4 border-b border-forest/5">
-                          <button 
-                        onClick={() => handleViewReason(app)}
-                        className="text-forest hover:text-forest-dark underline transition-colors flex items-center"
-                      >
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4 mr-1">
-                          <path strokeLinecap="round" strokeLinejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
-                          <path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                        </svg>
-                        View
-                      </button>
-                    </td>
-                    <td className="py-3 px-4 border-b border-forest/5">
-                      {app.documentLink ? (
-                        <div className="space-y-1">
-                          <a 
-                            href={app.documentLink} 
-                            target="_blank" 
-                            rel="noopener noreferrer"
-                            className="text-forest hover:text-forest-dark underline transition-colors flex items-center"
-                            onClick={(e) => openDocument(e, app.documentLink!)}
-                          >
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4 mr-1">
-                              <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
-                            </svg>
-                            View
-                          </a>
-                          {(app.status === 'approved' || app.status === 'rejected') && (
-                          <button 
-                              onClick={() => handleRegenerateDocument(app._id?.toString() || '')}
-                              className={`text-xs text-forest hover:text-forest-dark flex items-center ${updateStatus.processing ? 'opacity-50 cursor-not-allowed' : ''}`}
-                              disabled={updateStatus.processing}
-                          >
-                              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-3 h-3 mr-1">
-                                <path strokeLinecap="round" strokeLinejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" />
-                              </svg>
-                              Regenerate
-                          </button>
+        <div className="overflow-hidden">
+          <div className="glass-card p-0 md:p-4">
+            <div className="overflow-x-auto -mx-4 md:mx-0">
+              <table className="min-w-full text-xs md:text-sm">
+                <thead>
+                  <tr className="table-header">
+                    <th className="py-2 md:py-3 px-2 md:px-4 text-left border-b border-forest/10">Name</th>
+                    <th className="py-2 md:py-3 px-2 md:px-4 text-left border-b border-forest/10 hidden sm:table-cell">Department</th>
+                    <th className="py-2 md:py-3 px-2 md:px-4 text-left border-b border-forest/10">Dates</th>
+                    <th className="py-2 md:py-3 px-2 md:px-4 text-left border-b border-forest/10 hidden sm:table-cell">Days</th>
+                    <th className="py-2 md:py-3 px-2 md:px-4 text-left border-b border-forest/10">Status</th>
+                    <th className="py-2 md:py-3 px-2 md:px-4 text-left border-b border-forest/10 hidden md:table-cell">Applied On</th>
+                    <th className="py-2 md:py-3 px-2 md:px-4 text-left border-b border-forest/10 hidden sm:table-cell">Reason</th>
+                    <th className="py-2 md:py-3 px-2 md:px-4 text-left border-b border-forest/10 hidden sm:table-cell">Document</th>
+                    <th className="py-2 md:py-3 px-2 md:px-4 text-left border-b border-forest/10">Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {applications.map((app) => (
+                    <tr key={app._id} className="table-row-hover">
+                      <td className="py-2 md:py-3 px-2 md:px-4 border-b border-forest/5">
+                        <div className="font-medium text-gray-900">{app.name}</div>
+                        <div className="text-xs md:text-sm text-forest/70">{app.email}</div>
+                        <div className="text-xs md:text-sm text-forest/70 sm:hidden">{app.department}</div>
+                      </td>
+                      <td className="py-2 md:py-3 px-2 md:px-4 border-b border-forest/5 hidden sm:table-cell">
+                        <div>{app.department}</div>
+                        <div className="text-xs md:text-sm text-forest/70">{app.designation}</div>
+                      </td>
+                      <td className="py-2 md:py-3 px-2 md:px-4 border-b border-forest/5">
+                        <div className="text-xs md:text-sm">{new Date(app.startDate).toLocaleDateString()}</div>
+                        {app.startDate !== app.endDate && (
+                          <div className="text-xs text-forest/70">to {new Date(app.endDate).toLocaleDateString()}</div>
                         )}
-                        </div>
-                      ) : (
-                        <span className="text-forest/50 text-sm">-</span>
-                      )}
-                    </td>
-                    <td className="py-3 px-4 border-b border-forest/5">
-                      <div className="flex space-x-2">
-                        {app.status === 'pending' ? (
-                          <>
-                              <button 
-                              onClick={() => handleStatusAction(app._id?.toString() || '', 'approved')}
-                              className={`bg-green-300 text-green-800 hover:bg-green-600 px-2 py-1 rounded text-xs font-medium transition-colors flex items-center ${updateStatus.processing ? 'opacity-50 cursor-not-allowed' : ''}`}
-                              disabled={updateStatus.processing}
-                              >
-                              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-3 h-3 mr-1">
-                                <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                        <div className="text-xs text-forest/70 sm:hidden">{app.days} day(s)</div>
+                      </td>
+                      <td className="py-2 md:py-3 px-2 md:px-4 border-b border-forest/5 hidden sm:table-cell">
+                        {app.days || '-'}
+                        {app.days === 0.5 && app.halfDayType && (
+                          <span className="ml-1 text-xs text-forest/70">
+                            ({app.halfDayType === 'first' ? 'Morning' : 'Afternoon'})
+                          </span>
+                        )}
+                      </td>
+                      <td className="py-2 md:py-3 px-2 md:px-4 border-b border-forest/5">
+                        <span className={`status-badge text-xs ${
+                          app.status === 'approved' ? 'status-badge-approved' : 
+                          app.status === 'rejected' ? 'status-badge-rejected' : 'status-badge-pending'
+                        }`}>
+                          {app.status.charAt(0).toUpperCase() + app.status.slice(1)}
+                        </span>
+                        
+                        {/* Show processing status if this application is being updated */}
+                        {updateStatus.id === app._id?.toString() && updateStatus.processing && (
+                          <div className="mt-1 text-xs text-forest-dark flex items-center">
+                            <svg className="animate-spin w-2 h-2 md:w-3 md:h-3 mr-1 text-forest" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                              <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                              <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                            </svg>
+                            <span className="text-xs truncate">{updateStatus.message}</span>
+                          </div>
+                        )}
+                      </td>
+                      <td className="py-2 md:py-3 px-2 md:px-4 border-b border-forest/5 hidden md:table-cell">
+                        {app.createdAt ? (
+                          <div>
+                            <div className="text-xs md:text-sm">{new Date(app.createdAt).toLocaleDateString()}</div>
+                            <div className="text-xs text-forest/70">{new Date(app.createdAt).toLocaleTimeString()}</div>
+                          </div>
+                        ) : '—'}
+                      </td>
+                      <td className="py-2 md:py-3 px-2 md:px-4 border-b border-forest/5 hidden sm:table-cell">
+                        <button 
+                          onClick={() => handleViewReason(app)}
+                          className="text-forest hover:text-forest-dark underline transition-colors flex items-center text-xs"
+                        >
+                          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-3 h-3 md:w-4 md:h-4 mr-1">
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                          </svg>
+                          View
+                        </button>
+                      </td>
+                      <td className="py-2 md:py-3 px-2 md:px-4 border-b border-forest/5 hidden sm:table-cell">
+                        {app.documentLink ? (
+                          <div className="space-y-1">
+                            <a 
+                              href={app.documentLink} 
+                              target="_blank" 
+                              rel="noopener noreferrer"
+                              className="text-forest hover:text-forest-dark underline transition-colors flex items-center text-xs"
+                              onClick={(e) => openDocument(e, app.documentLink!)}
+                            >
+                              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-3 h-3 md:w-4 md:h-4 mr-1">
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
                               </svg>
-                              Approve
+                              View
+                            </a>
+                            {(app.status === 'approved' || app.status === 'rejected') && (
+                            <button 
+                                onClick={() => handleRegenerateDocument(app._id?.toString() || '')}
+                                className={`text-xs text-forest hover:text-forest-dark flex items-center ${updateStatus.processing ? 'opacity-50 cursor-not-allowed' : ''}`}
+                                disabled={updateStatus.processing}
+                            >
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-2 h-2 md:w-3 md:h-3 mr-1">
+                                  <path strokeLinecap="round" strokeLinejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" />
+                                </svg>
+                                Regenerate
+                            </button>
+                          )}
+                          </div>
+                        ) : (
+                          <span className="text-forest/50 text-xs">-</span>
+                        )}
+                      </td>
+                      <td className="py-2 md:py-3 px-2 md:px-4 border-b border-forest/5">
+                        <div className="flex flex-col gap-1">
+                          {app.status === 'pending' ? (
+                            <>
+                              <button 
+                                onClick={() => handleStatusAction(app._id?.toString() || '', 'approved')}
+                                className={`bg-green-300 text-green-800 hover:bg-green-600 px-1.5 py-0.5 sm:px-2 sm:py-1 rounded text-xs font-medium transition-colors flex items-center ${updateStatus.processing ? 'opacity-50 cursor-not-allowed' : ''}`}
+                                disabled={updateStatus.processing}
+                              >
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-2.5 h-2.5 sm:w-3 sm:h-3 mr-0.5 sm:mr-1">
+                                  <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                                </svg>
+                                <span className="whitespace-nowrap">Approve</span>
                               </button>
+                              <button
+                                onClick={() => handleStatusAction(app._id?.toString() || '', 'rejected')}
+                                className={`bg-red-100 text-red-800 hover:bg-red-200 px-1.5 py-0.5 sm:px-2 sm:py-1 rounded text-xs font-medium transition-colors flex items-center ${updateStatus.processing ? 'opacity-50 cursor-not-allowed' : ''}`}
+                                disabled={updateStatus.processing}
+                              >
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-2.5 h-2.5 sm:w-3 sm:h-3 mr-0.5 sm:mr-1">
+                                  <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                                </svg>
+                                <span className="whitespace-nowrap">Reject</span>
+                              </button>
+                            </>
+                          ) : (
                             <button
-                              onClick={() => handleStatusAction(app._id?.toString() || '', 'rejected')}
-                              className={`bg-red-100 text-red-800 hover:bg-red-200 px-2 py-1 rounded text-xs font-medium transition-colors flex items-center ${updateStatus.processing ? 'opacity-50 cursor-not-allowed' : ''}`}
+                              onClick={() => handleStatusAction(app._id?.toString() || '', 'pending')}
+                              className={`bg-amber-100 text-amber-800 hover:bg-amber-200 px-1.5 py-0.5 sm:px-2 sm:py-1 rounded text-xs font-medium transition-colors flex items-center ${updateStatus.processing ? 'opacity-50 cursor-not-allowed' : ''}`}
                               disabled={updateStatus.processing}
                             >
-                              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-3 h-3 mr-1">
-                                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-2.5 h-2.5 sm:w-3 sm:h-3 mr-0.5 sm:mr-1">
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                               </svg>
-                              Reject
+                              <span className="whitespace-nowrap">Reset</span>
                             </button>
-                          </>
-                        ) : (
-                          <button
-                            onClick={() => handleStatusAction(app._id?.toString() || '', 'pending')}
-                            className={`bg-amber-100 text-amber-800 hover:bg-amber-200 px-2 py-1 rounded text-xs font-medium transition-colors flex items-center ${updateStatus.processing ? 'opacity-50 cursor-not-allowed' : ''}`}
-                            disabled={updateStatus.processing}
-                          >
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-3 h-3 mr-1">
-                              <path strokeLinecap="round" strokeLinejoin="round" d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                            </svg>
-                            Reset
-                          </button>
-                        )}
-                      </div>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+                          )}
+
+                          {/* Mobile-only action buttons for document and reason */}
+                          <div className="flex flex-wrap gap-1 sm:hidden mt-1">
+                            <button 
+                              onClick={() => handleViewReason(app)}
+                              className="bg-gray-100 text-forest-dark hover:bg-gray-200 px-1.5 py-0.5 rounded text-xs font-medium transition-colors flex items-center"
+                            >
+                              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-2.5 h-2.5 mr-0.5">
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                              </svg>
+                              Reason
+                            </button>
+                            {app.documentLink && (
+                              <a 
+                                href={app.documentLink}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="bg-forest/10 text-forest-dark hover:bg-forest/20 px-1.5 py-0.5 rounded text-xs font-medium transition-colors flex items-center"
+                                onClick={(e) => openDocument(e, app.documentLink!)}
+                              >
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-2.5 h-2.5 mr-0.5">
+                                  <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
+                                </svg>
+                                Doc
+                              </a>
+                            )}
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
       )}
@@ -896,28 +921,28 @@ export default function AdminPage() {
       {/* Status Update Modal */}
       {showModal && selectedApp && (
         <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50">
-          <div className="bg-white rounded-xl w-full max-w-lg mx-4 shadow-xl p-6 modal-animation" onClick={(e) => e.stopPropagation()}>
-            <div className="flex justify-between items-center mb-4">
-              <h2 className="text-xl font-semibold text-gray-800">
+          <div className="bg-white rounded-xl w-full max-w-lg mx-4 shadow-xl p-4 md:p-6 modal-animation" onClick={(e) => e.stopPropagation()}>
+            <div className="flex justify-between items-center mb-3 md:mb-4">
+              <h2 className="text-lg md:text-xl font-semibold text-gray-800">
                 {selectedApp.status === 'approved' 
                   ? 'Approve Leave Application' 
                   : selectedApp.status === 'rejected'
                     ? 'Reject Leave Application'
                     : 'Reset Leave Application Status'
                 }
-            </h2>
+              </h2>
               <button 
                 onClick={() => setShowModal(false)}
                 className="text-gray-500 hover:text-gray-700"
               >
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5 md:w-6 md:h-6">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
                 </svg>
               </button>
             </div>
             
-            <div className="mb-4">
-              <label className="block mb-2 text-sm font-medium text-gray-700">
+            <div className="mb-3 md:mb-4">
+              <label className="block mb-1 md:mb-2 text-xs md:text-sm font-medium text-gray-700">
                 {selectedApp.status === 'approved' || selectedApp.status === 'rejected' 
                   ? 'Admin Message (Optional)'
                   : 'Reason for Status Reset (Optional)'
@@ -927,7 +952,7 @@ export default function AdminPage() {
                 value={selectedApp.adminMessage}
                 onChange={(e) => setSelectedApp({...selectedApp, adminMessage: e.target.value})}
                 rows={3}
-                className="w-full px-4 py-2.5 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-forest/30 transition"
+                className="w-full px-3 py-2 md:px-4 md:py-2.5 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-forest/30 transition text-sm"
                 placeholder={selectedApp.status === 'approved' 
                   ? 'Add any additional information for the approval...' 
                   : selectedApp.status === 'rejected'
@@ -937,10 +962,10 @@ export default function AdminPage() {
               ></textarea>
             </div>
             
-            <div className="flex justify-end space-x-3">
+            <div className="flex justify-end space-x-2 md:space-x-3">
               <button
                 onClick={() => setShowModal(false)}
-                className="bg-gray-200 hover:bg-gray-300 text-gray-800 font-medium py-2 px-4 rounded-lg transition-colors"
+                className="bg-gray-200 hover:bg-gray-300 text-gray-800 font-medium py-1.5 px-3 md:py-2 md:px-4 rounded-lg transition-colors text-xs md:text-sm"
               >
                 Cancel
               </button>
@@ -953,7 +978,7 @@ export default function AdminPage() {
                     : selectedApp.status === 'rejected'
                       ? 'bg-red-600 hover:bg-red-700 text-white'
                       : 'bg-amber-500 hover:bg-amber-600 text-white'
-                } font-medium py-2 px-4 rounded-lg transition-colors`}
+                } font-medium py-1.5 px-3 md:py-2 md:px-4 rounded-lg transition-colors text-xs md:text-sm`}
               >
                 {selectedApp.status === 'approved' 
                   ? 'Approve' 
@@ -970,44 +995,44 @@ export default function AdminPage() {
       {/* View Reason Modal */}
       {viewReasonModal && reasonApp && (
         <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50">
-          <div className="bg-white rounded-xl w-full max-w-lg mx-4 shadow-xl p-6 modal-animation" onClick={(e) => e.stopPropagation()}>
-            <div className="flex justify-between items-center mb-4">
-              <h2 className="text-xl font-semibold text-gray-800">Leave Application Details</h2>
+          <div className="bg-white rounded-xl w-full max-w-lg mx-4 shadow-xl p-4 md:p-6 modal-animation" onClick={(e) => e.stopPropagation()}>
+            <div className="flex justify-between items-center mb-3 md:mb-4">
+              <h2 className="text-lg md:text-xl font-semibold text-gray-800">Leave Application Details</h2>
               <button 
                 onClick={() => setViewReasonModal(false)}
                 className="text-gray-500 hover:text-gray-700"
               >
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5 md:w-6 md:h-6">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
                 </svg>
               </button>
             </div>
             
-            <div className="space-y-4">
+            <div className="space-y-3 md:space-y-4 text-sm md:text-base">
               <div>
-                <h3 className="text-sm font-medium text-gray-500">Reason for Leave</h3>
+                <h3 className="text-xs md:text-sm font-medium text-gray-500">Reason for Leave</h3>
                 <p className="mt-1 text-gray-800">{reasonApp.reason}</p>
               </div>
               
               {reasonApp.comments && (
                 <div>
-                  <h3 className="text-sm font-medium text-gray-500">Additional Comments</h3>
+                  <h3 className="text-xs md:text-sm font-medium text-gray-500">Additional Comments</h3>
                   <p className="mt-1 text-gray-800">{reasonApp.comments}</p>
                 </div>
               )}
               
               {reasonApp.adminMessage && (
                 <div>
-                  <h3 className="text-sm font-medium text-gray-500">Admin Message</h3>
+                  <h3 className="text-xs md:text-sm font-medium text-gray-500">Admin Message</h3>
                   <p className="mt-1 text-gray-800">{reasonApp.adminMessage}</p>
                 </div>
               )}
             </div>
             
-            <div className="flex justify-end mt-6">
+            <div className="flex justify-end mt-4 md:mt-6">
               <button
                 onClick={() => setViewReasonModal(false)}
-                className="bg-forest hover:bg-forest-dark text-white font-medium py-2 px-4 rounded-lg transition-colors"
+                className="bg-forest hover:bg-forest-dark text-white font-medium py-1.5 px-3 md:py-2 md:px-4 rounded-lg transition-colors text-xs md:text-sm"
               >
                 Close
               </button>
