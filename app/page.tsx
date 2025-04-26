@@ -69,7 +69,7 @@ export default function Home() {
       ) : (
         <div className="overflow-hidden">
           <div className="glass-card p-0 md:p-4">
-            <div className="overflow-x-auto -mx-4 md:mx-0">
+            <div className="mobile-table-wrapper">
               <table className="min-w-full text-xs md:text-sm">
                 <thead>
                   <tr className="table-header">

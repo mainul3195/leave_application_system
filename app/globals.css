@@ -61,6 +61,13 @@
     @apply hover:bg-forest/5 transition-colors duration-200;
   }
   
+  /* Mobile-optimized table styles */
+  .mobile-table-wrapper {
+    @apply overflow-x-auto px-4 md:px-0 mx-0 relative;
+    -webkit-overflow-scrolling: touch; /* For smoother scrolling on iOS */
+    scrollbar-width: thin;
+  }
+  
   /* Status badges with pulsing animation for pending */
   .status-badge {
     @apply px-1.5 py-0.5 md:px-2 md:py-1 rounded-full text-xs font-medium;
